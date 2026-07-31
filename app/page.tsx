@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CellField from "@/components/CellField";
 import Reveal from "@/components/Reveal";
+import { ADVISOR } from "@/lib/site";
 
 const IMG = {
   cattle: "https://images.unsplash.com/photo-1504868501898-007584e184a5?auto=format&fit=crop&w=1400&q=80",
@@ -276,15 +277,18 @@ export default function Home() {
             <span className="italic text-moss">yayımlanmış bilim</span> var.
           </h2>
           <p className="mt-6 text-ink/75 leading-relaxed">
-            Hayvan sağlığı alanında en yeni teknolojileri ve bilimsel
-            araştırmaları kullanarak veteriner ilaçlarında etkinlik ve
-            güvenilirlik sağlıyoruz. Ar-Ge yaklaşımımız akademik yayınlar ve
-            saha verileriyle desteklenir.
+            Formülasyonlarımız, hayvan besleme alanında onlarca yıllık akademik
+            birikime sahip bilimsel danışmanımız{" "}
+            <Link href="/bilim-danismani" className="font-medium text-forest link-underline">
+              {ADVISOR.name}
+            </Link>{" "}
+            önderliğinde geliştirilir. Ar-Ge yaklaşımımız; akademik yayınlar,
+            laboratuvar bulguları ve saha verileriyle desteklenir.
           </p>
-          <a href="https://scholar.google.com/citations?user=yMe9ZQUAAAAJ&hl=tr" target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-forest link-underline">
-            Bilimsel yayımlarımız
+          <Link href="/bilim-danismani" className="mt-8 inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-forest link-underline">
+            Bilimsel danışmanımız
             <svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 9l6-6M4 3h5v5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </a>
+          </Link>
         </Reveal>
       </section>
 

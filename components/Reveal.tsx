@@ -18,20 +18,39 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Güvenlik: IntersectionObserver yoksa içeriği hemen göster.
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("in");
+      return;
+    }
+
+    const show = () => {
+      el.style.transitionDelay = `${delay}ms`;
+      el.classList.add("in");
+    };
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            (e.target as HTMLElement).style.transitionDelay = `${delay}ms`;
-            e.target.classList.add("in");
+            show();
             io.unobserve(e.target);
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    // Güvenlik ağı: 2 sn içinde herhangi bir sebeple tetiklenmezse yine de göster,
+    // böylece içerik hiçbir koşulda kalıcı olarak görünmez kalmaz.
+    const fallback = window.setTimeout(show, 2000);
+
+    return () => {
+      io.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, [delay]);
 
   return (

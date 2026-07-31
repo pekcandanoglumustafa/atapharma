@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const base = "https://atapharma.com.tr";
-const routes = ["", "/kurulus", "/misyonumuz", "/uretim-politikamiz", "/urunler", "/haberler", "/iletisim"];
+const routes = ["", "/kurulus", "/misyonumuz", "/bilim-danismani", "/uretim-politikamiz", "/urunler", "/haberler", "/iletisim"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((r) => ({

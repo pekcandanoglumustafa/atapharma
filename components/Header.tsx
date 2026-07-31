@@ -5,15 +5,11 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
-const about = [
+const about: { href: string; label: string; external?: boolean }[] = [
   { href: "/kurulus", label: "Kuruluş" },
   { href: "/misyonumuz", label: "Misyonumuz" },
+  { href: "/bilim-danismani", label: "Bilim Danışmanımız" },
   { href: "/uretim-politikamiz", label: "Üretim Politikamız" },
-  {
-    href: "https://scholar.google.com/citations?user=yMe9ZQUAAAAJ&hl=tr",
-    label: "Yayımlarım",
-    external: true,
-  },
 ];
 
 const nav = [
