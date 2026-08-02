@@ -39,13 +39,13 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-ink/10 bg-paper/85 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+          ? "border-b border-ink/10 bg-paper/85 text-ink backdrop-blur-md"
+          : "border-b border-transparent bg-transparent text-paper"
       }`}
     >
       <div className="wrap flex h-[72px] items-center justify-between">
         <Link href="/" aria-label="ATA Pharma ana sayfa">
-          <Logo />
+          <Logo variant={scrolled ? "dark" : "light"} />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -100,16 +100,16 @@ export default function Header() {
           aria-expanded={open}
         >
           <div className="flex flex-col gap-1.5">
-            <span className={`h-0.5 w-6 bg-ink transition-all ${open ? "translate-y-2 rotate-45" : ""}`} />
-            <span className={`h-0.5 w-6 bg-ink transition-all ${open ? "opacity-0" : ""}`} />
-            <span className={`h-0.5 w-6 bg-ink transition-all ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+            <span className={`h-0.5 w-6 bg-current transition-all ${open ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`h-0.5 w-6 bg-current transition-all ${open ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 w-6 bg-current transition-all ${open ? "-translate-y-2 -rotate-45" : ""}`} />
           </div>
         </button>
       </div>
 
       {/* Mobile menu */}
       <div
-        className={`overflow-hidden bg-paper/95 backdrop-blur-md transition-[max-height] duration-500 lg:hidden ${
+        className={`overflow-hidden bg-paper/95 text-ink backdrop-blur-md transition-[max-height] duration-500 lg:hidden ${
           open ? "max-h-[520px] border-b border-ink/10" : "max-h-0"
         }`}
       >

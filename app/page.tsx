@@ -3,6 +3,7 @@ import Link from "next/link";
 import CellField from "@/components/CellField";
 import Reveal from "@/components/Reveal";
 import { ADVISOR } from "@/lib/site";
+import { PRODUCTS } from "@/lib/products";
 
 const IMG = {
   cattle: "https://images.unsplash.com/photo-1504868501898-007584e184a5?auto=format&fit=crop&w=1400&q=80",
@@ -22,23 +23,7 @@ const species = [
   { tag: "04", name: "Oğlaklar", latin: "Caprine" },
 ];
 
-const products = [
-  {
-    title: "İnekler İçin İlaç",
-    img: IMG.cow,
-    body: "Bağışıklık sistemini güçlendiren özel formüller ile ineklerin sağlıklı kalmasını ve yüksek verim sağlamasını destekliyoruz. Sindirim sağlığını, bağışıklık fonksiyonlarını ve süt üretimini artıran çözümler.",
-  },
-  {
-    title: "Koyunlar İçin İlaç",
-    img: IMG.flock,
-    body: "Koyunların sağlıklı gelişimi ve hastalıklara karşı direnç kazanması için özel bağışıklık destek ürünleri geliştiriyoruz. Sindirim düzenleyici, vitamin ve mineral takviyeli çözümler.",
-  },
-  {
-    title: "Buzağılar İçin Yenilikçi Çözümler",
-    img: IMG.calf,
-    body: "Yeni doğan buzağıların bağışıklık sistemini güçlendiren yenilikçi çözümlerle, hayvanların ilk günlerinden itibaren güçlü ve sağlıklı büyümelerini sağlıyoruz. Hastalık riskini azaltan besin destekleri.",
-  },
-];
+const featured = PRODUCTS.slice(0, 3);
 
 const values = [
   {
@@ -181,20 +166,25 @@ export default function Home() {
           </Reveal>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {products.map((p, i) => (
-              <Reveal key={p.title} delay={i * 100}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-ink/8 bg-bone transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_rgba(12,27,19,0.35)]">
-                  <div className="relative aspect-[16/11] overflow-hidden">
-                    <Image src={p.img} alt={p.title} fill className="duotone object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
+            {featured.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 100}>
+                <Link
+                  href={`/urunler/${p.slug}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-ink/8 bg-bone transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_rgba(12,27,19,0.35)]"
+                >
+                  <div className="relative flex aspect-[16/11] items-center justify-center overflow-hidden bg-gradient-to-br from-forest to-forest-900 p-6">
                     <span className="absolute left-4 top-4 rounded-full bg-forest-900/70 px-3 py-1 font-mono text-[0.6rem] uppercase tracking-widest text-gold-soft backdrop-blur">
                       0{i + 1}
                     </span>
+                    <span className="text-center font-display text-2xl font-semibold leading-tight text-paper/95 transition-transform duration-500 group-hover:scale-105">
+                      {p.name}
+                    </span>
                   </div>
                   <div className="flex flex-1 flex-col p-7">
-                    <h3 className="font-display text-xl font-semibold text-forest">{p.title}</h3>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/65">{p.body}</p>
+                    <h3 className="font-display text-xl font-semibold text-forest">{p.name}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/65">{p.tagline}</p>
                   </div>
-                </article>
+                </Link>
               </Reveal>
             ))}
           </div>
